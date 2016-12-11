@@ -1,0 +1,17 @@
+{
+  "name": "clicktocongress-node",
+  "version": "0.0.1",
+  "description": "node app to connect citizens to elected representatives",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Whitton",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "request": "^2.79.0",
+    "twilio": "^2.11.1"
+  }
+}
