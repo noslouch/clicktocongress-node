@@ -12,7 +12,7 @@ app.use('/api/lookup', require('./routes/lookup'));
 app.use('/api/call', require('./routes/call'));
 app.use('/api/connect', require('./routes/connect'));
 
-app.listen(3000, function () {
+var server = app.listen(3000, function() {
   var port = server.address().port;
   console.log('Listening at port %s', port);  
 });
