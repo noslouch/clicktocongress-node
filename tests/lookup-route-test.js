@@ -5,53 +5,67 @@ var sinon = require('sinon');
 var express = require('express');
 var request = require('supertest');
 
-var googleMaps = require('../lib/clients/google-maps');
-var sunlight = require('../lib/clients/sunlight');
+var googleCivics = require('../lib/clients/google-civics');
+var REPS_RESPONSE = require('./fixtures/representatives');
+var fromGoogle = {
+  offices: REPS_RESPONSE.offices.slice(0, 3),
+  officials: REPS_RESPONSE.officials.slice(0, 4)
+};
+
+var expecting = [{
+   "name": "Donald J. Trump",
+   "office": "President of the United States",
+   "party": "Republican",
+   "phones": [
+    "(202) 456-1111"
+   ]
+  },
+  {
+   "name": "Mike Pence",
+   "party": "Republican",
+   "office": "Vice-President of the United States",
+   "phones": [
+    "(202) 456-1111"
+   ]
+  },
+  {
+   "name": "Charles E. Schumer",
+   "office": "United States Senate",
+   "party": "Democratic",
+   "phones": [
+    "(202) 224-6542"
+   ]
+  },
+  {
+   "name": "Kirsten E. Gillibrand",
+   "office": "United States Senate",
+   "party": "Democratic",
+   "phones": [
+    "(202) 224-4451"
+   ]
+}];
 var googleStub;
-var sunlighStub;
 
 var app = express();
 app.use('/lookup', lookupRoute);
 
 describe('lookup route', function () {
-  const ZIP = '12345';
-  const data = 'foo';
-  const LATLNG = 'latlong';
-  const LAT = 'lat';
-  const LNG = 'lng';
+  const ADDRESS = "123 Main St, Anytown, OH";
   
   beforeEach(function () {
-    googleStub = sinon.stub(googleMaps, 'lookup', () => Promise.resolve(LATLNG));
-    sunlightStub = sinon.stub(sunlight, 'getLegistators', () => Promise.resolve({data}));
+    googleStub = sinon.stub(googleCivics, 'getReps', () => Promise.resolve(fromGoogle));
   });
   afterEach(function() {
-    googleMaps.lookup.restore();
-    sunlight.getLegistators.restore();
+    googleCivics.getReps.restore();
   });
   
-  it('should call google lookup and then getLegistators if given a zip', function (done) {
+  it('should return merged objects from the google API', function (done) {
     
     request(app)
-      .get(`/lookup/?zip=${ZIP}`)
+      .get(`/lookup/?address=${ADDRESS}`)
       .expect(function () {
-        expect(googleStub.calledWith(ZIP)).to.be.ok;
-        expect(sunlightStub.calledWith(LATLNG)).to.be.ok;
+        expect(googleStub.calledWith(ADDRESS)).to.be.ok;
       })
-      .expect(200, {
-        data
-      }, done)
-  });
-  
-  it('should call getLegistators if given a zip', function (done) {
-    
-    request(app)
-      .get(`/lookup/?lat=${LAT}&lng=${LNG}`)
-      .expect(function () {
-        expect(sunlightStub.calledWith({lat: LAT, lng: LNG})).to.be.ok;
-        sinon.assert.notCalled(googleStub);
-      })
-      .expect(200, {
-        data
-      }, done)
+      .expect(200, expecting, done);
   });
 });

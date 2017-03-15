@@ -1,20 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var googleMaps = require('../lib/clients/google-maps');
-var sunlight = require('../lib/clients/sunlight');
+var googleCivics = require('../lib/clients/google-civics');
 
-function lookupByZip(zip) {
-  return googleMaps.lookup(zip)
-    .then(ll => sunlight.getLegistators(ll));
+function mergeResults(data) {
+  return data.offices.reduce(function(transformedOfficials, val) {
+    var _officials = val.officialIndices.map(i => data.officials[i]);
+    _officials.forEach(o => o.office = val.name);
+    return transformedOfficials.concat(_officials);
+  }, []);
 }
 
 router.get('/', function(req, res) {
   var results;
   var queryParams = req.query;
-  if (queryParams.zip) {
-    lookupByZip(queryParams.zip).then(r => res.send(r));
-  } else if (queryParams.lat && queryParams.lng) {
-    sunlight.getLegistators(queryParams).then(r => res.send(r));
+  if (queryParams.address) {
+    googleCivics
+      .getReps(queryParams.address)
+      .then(mergeResults)
+      .then(d => res.send(d))
+      .catch(e => res.send(e));
   }
 });
 
