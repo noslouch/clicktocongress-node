@@ -30,5 +30,5 @@ describe('Google Maps Client', function () {
       getSpy.restore();
       done();
     });
-  })
-})
+  });
+});
