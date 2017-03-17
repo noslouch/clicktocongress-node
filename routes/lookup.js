@@ -5,7 +5,10 @@ var googleCivics = require('../lib/clients/google-civics');
 function mergeResults(data) {
   return data.offices.reduce(function(transformedOfficials, val) {
     var _officials = val.officialIndices.map(i => data.officials[i]);
-    _officials.forEach(o => o.office = val.name);
+    _officials.forEach((o, i) => {
+      o.divisionId = val.divisionId;
+      o.office = val.name;
+    });
     return transformedOfficials.concat(_officials);
   }, []);
 }

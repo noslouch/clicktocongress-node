@@ -2,18 +2,21 @@ module.exports = {
  "offices": [
   {
    "name": "President of the United States",
+   "divisionId": "ocd-division/country:us",
    "officialIndices": [
     0
    ]
   },
   {
    "name": "Vice-President of the United States",
+   "divisionId": "ocd-division/country:us",
    "officialIndices": [
     1
    ]
   },
   {
    "name": "United States Senate",
+   "divisionId": "ocd-division/country:us/state:ny",
    "officialIndices": [
     2,
     3
@@ -21,72 +24,84 @@ module.exports = {
   },
   {
    "name": "United States House of Representatives NY-07",
+   "divisionId": "ocd-division/country:us/state:ny/cd:7",
    "officialIndices": [
     4
    ]
   },
   {
    "name": "Governor",
+   "divisionId": "ocd-division/country:us/state:ny",
    "officialIndices": [
     5
    ]
   },
   {
    "name": "Lieutenant Governor",
+   "divisionId": "ocd-division/country:us/state:ny",
    "officialIndices": [
     6
    ]
   },
   {
    "name": "NY State Senate District 25",
+   "divisionId": "ocd-division/country:us/state:ny/sldu:25",
    "officialIndices": [
     7
    ]
   },
   {
    "name": "NY State Assembly District 52",
+   "divisionId": "ocd-division/country:us/state:ny/sldl:52",
    "officialIndices": [
     8
    ]
   },
   {
    "name": "Mayor",
+   "divisionId": "ocd-division/country:us/state:ny/place:new_york",
    "officialIndices": [
     9
    ]
   },
   {
    "name": "Comptroller",
+   "divisionId": "ocd-division/country:us/state:ny/place:new_york",
    "officialIndices": [
     10
    ]
   },
   {
    "name": "Public Advocate",
+   "divisionId": "ocd-division/country:us/state:ny/place:new_york",
    "officialIndices": [
     11
    ]
   },
   {
    "name": "Attorney General",
+   "divisionId": "ocd-division/country:us/state:ny",
    "officialIndices": [
     12
    ]
   },
   {
    "name": "State Comptroller",
+   "divisionId": "ocd-division/country:us/state:ny",
    "officialIndices": [
     13
    ]
   },
   {
    "name": "County District Attorney",
+   "divisionId": "ocd-division/country:us/state:ny/county:kings",
    "officialIndices": [
     14
    ]
   },
   {
    "name": "Brooklyn Borough President",
+   "divisionId": "ocd-division/country:us/state:ny/county:kings",
    "officialIndices": [
     15
    ]
@@ -206,4 +221,4 @@ module.exports = {
    ]
   }
  ]
-}
+} 

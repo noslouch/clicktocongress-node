@@ -13,36 +13,44 @@ var fromGoogle = {
 };
 
 var expecting = [{
+   "id": 0,
    "name": "Donald J. Trump",
    "office": "President of the United States",
    "party": "Republican",
    "phones": [
     "(202) 456-1111"
-   ]
+  ],
+   "divisionId": "ocd-division/country:us"
   },
   {
+   "id": 1,
    "name": "Mike Pence",
    "party": "Republican",
    "office": "Vice-President of the United States",
    "phones": [
     "(202) 456-1111"
-   ]
+  ],
+   "divisionId": "ocd-division/country:us"
   },
   {
+   "id": 2,
    "name": "Charles E. Schumer",
    "office": "United States Senate",
    "party": "Democratic",
    "phones": [
     "(202) 224-6542"
-   ]
+  ],
+   "divisionId": "ocd-division/country:us/state:ny"
   },
   {
+   "id": 3,
    "name": "Kirsten E. Gillibrand",
    "office": "United States Senate",
    "party": "Democratic",
    "phones": [
     "(202) 224-4451"
-   ]
+  ],
+   "divisionId": "ocd-division/country:us/state:ny"
 }];
 var googleStub;
 

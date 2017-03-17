@@ -20,7 +20,7 @@ describe('Google Civics API Client', function() {
         qs: {
           key: process.env.GOOGLE_API_KEY,
           address: ADDRESS,
-          fields: 'offices(name,officialIndices),officials(name,party,phones)'
+          fields: 'offices(name,officialIndices,divisionId),officials(name,party,phones)'
         },
         json: true,
         timeout: 5000
