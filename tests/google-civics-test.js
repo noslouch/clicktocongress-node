@@ -22,7 +22,8 @@ describe('Google Civics API Client', function() {
           address: ADDRESS,
           fields: 'offices(name,officialIndices),officials(name,party,phones)'
         },
-        json: true
+        json: true,
+        timeout: 5000
       })).to.be.ok;
       
       getSpy.restore();
