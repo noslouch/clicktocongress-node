@@ -17,7 +17,7 @@ describe('call route', function () {
         calls: {
           create: createStub
         }
-      }
+      };
     });
   
   var app = express();
