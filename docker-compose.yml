@@ -1,0 +1,15 @@
+version: '3'
+services:
+  click-to-congress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    volumes:
+       - ./index.js:/code/index.js
+       - ./lib:/code/lib
+       - ./routes:/code/routes
+       - ./tests:/code/tests 

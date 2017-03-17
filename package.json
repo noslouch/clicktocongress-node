@@ -9,10 +9,9 @@
   "author": "Brian Whitton",
   "license": "MIT",
   "dependencies": {
-    "cors": "^2.8.1",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
-    "lambda-express": "^0.1.5",
+    "morgan": "^1.8.1",
     "request": "^2.79.0",
     "twilio": "^3.0.0-rc.13"
   },
