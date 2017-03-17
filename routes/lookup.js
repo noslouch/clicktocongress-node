@@ -13,6 +13,11 @@ function mergeResults(data) {
   }, []);
 }
 
+function idResults(data) {
+  data.forEach((d, i) => d.id = i);
+  return data;
+}
+
 router.get('/', function(req, res) {
   var results;
   var queryParams = req.query;
@@ -20,6 +25,7 @@ router.get('/', function(req, res) {
     googleCivics
       .getReps(queryParams.address)
       .then(mergeResults)
+      .then(idResults)
       .then(d => res.send(d))
       .catch(e => res.send(e));
   } else {
