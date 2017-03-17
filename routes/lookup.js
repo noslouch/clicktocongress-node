@@ -19,6 +19,13 @@ router.get('/', function(req, res) {
       .then(mergeResults)
       .then(d => res.send(d))
       .catch(e => res.send(e));
+  } else {
+    res.status(400).send({
+      error: {
+        code: 400,
+        message: "Address is required"
+      }
+    });
   }
 });
 
