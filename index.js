@@ -5,7 +5,7 @@ var morgan = require('morgan');
 var apiRouter = express.Router();
 var app = express();
 
-const apiPrefix = process.env.API_PREFIX || '/';
+const apiPrefix = process.env.API_PREFIX || '';
 
 morgan.token('remote-addr', function (req, res) {
   var realIP = req.headers['x-real-ip'];
