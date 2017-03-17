@@ -1,5 +1,5 @@
 {
-  "name": "clicktocongress-node",
+  "name": "click-to-congress",
   "version": "0.0.1",
   "description": "node app to connect citizens to elected representatives",
   "main": "index.js",
