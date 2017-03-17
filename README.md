@@ -4,8 +4,8 @@ This is a node port of the [click to congress elixir api](https://github.com/nos
 
 ## development
 
-* `$ git clone https://github.com/noslouch/clicktocongress-node` this repository
-* `$ cd clicktocongress-node`
+* `$ git clone https://github.com/nypublicradio/click-to-congress` this repository
+* `$ cd click-to-congress
 * `$ npm install`
 * `$ cp .env.sample .env`.
 
