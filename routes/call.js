@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
   
   client.calls
     .create({
-      url: `${HOST}/${API_PREFIX}/api/connect?t=${queryParams.dial_out}`,
+      url: `${HOST}/${API_PREFIX}/v1/connect?t=${queryParams.dial_out}`,
       to: queryParams.my_number,
       from: twilioNumber
     }).then(() => res.send('ok'));
