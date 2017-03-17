@@ -1,0 +1,11 @@
+*.log
+*.swp
+.DS_Store
+.env
+.jobs
+/bundle.js
+Dockerfile
+README.md
+circle.yml
+docker-compose.yml
+node_modules/

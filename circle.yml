@@ -1,7 +1,26 @@
 machine:
-  node:
-    - 4.3.2 # lambda version
+  services:
+    - docker
+  python:
+    version: 3.6.0
 
 dependencies:
-  pre:
-    - npm install mocha -g
+  cache_directories:
+    - "~/docker"
+  override:
+    - pip3 install -U git+https://github.com/nypublicradio/deploy.git
+    - ecs_deploy build
+
+test:
+  override:
+    - ecs_deploy test --test-cmd='npm test'
+
+deployment:
+  prod:
+    tag: /v[0-9]+\.[0-9]+\.[0-9]+/
+    commands:
+      - ecs_deploy deploy --env=prod --memory-reservation=64 --port=3000
+  demo:
+    branch: master
+    commands:
+      - ecs_deploy deploy --env=demo --memory-reservation=64 --port=3000

@@ -1,20 +1,24 @@
 require('dotenv').config();
 
-var lambdaExpress = require('lambda-express');
 var express = require('express');
+var morgan = require('morgan');
+var apiRouter = express.Router();
 var app = express();
-var cors = require('cors');
 
-app.use(cors());
-app.options('*', cors());
+const apiPrefix = process.env.API_PREFIX || '/';
 
-app.use('/api/lookup', require('./routes/lookup'));
-app.use('/api/call', require('./routes/call'));
-app.use('/api/connect', require('./routes/connect'));
+morgan.token('remote-addr', function (req, res) {
+  var realIP = req.headers['x-real-ip'];
+  return realIP || req.connection.remoteAddress;
+});
+
+apiRouter.use('/v1/lookup', require('./routes/lookup'));
+apiRouter.use('/v1/call', require('./routes/call'));
+apiRouter.use('/v1/connect', require('./routes/connect'));
+app.use(morgan('combined'));
+app.use(apiPrefix, apiRouter);
 
 var server = app.listen(3000, function() {
   var port = server.address().port;
   console.log('Listening at port %s', port);  
 });
-
-exports.handler = lambdaExpress.appHandler(app);
